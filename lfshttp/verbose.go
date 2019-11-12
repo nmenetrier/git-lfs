@@ -134,11 +134,7 @@ func (c *Client) traceHTTPDump(direction string, dump []byte) {
 
 	for scanner.Scan() {
 		line := scanner.Text()
-		if !c.DebuggingVerbose && strings.HasPrefix(strings.ToLower(line), "authorization: basic") {
-			fmt.Fprintf(c.VerboseOut, "%s Authorization: Basic * * * * *\n", direction)
-		} else {
-			fmt.Fprintf(c.VerboseOut, "%s %s\n", direction, line)
-		}
+		fmt.Fprintf(c.VerboseOut, "%s %s\n", direction, line)
 	}
 }
 
